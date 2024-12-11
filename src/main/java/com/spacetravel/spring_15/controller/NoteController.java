@@ -1,4 +1,4 @@
-package com.spacetravel.spring_15;
+package com.spacetravel.spring_15.controller;
 
 import com.spacetravel.spring_15.model.Note;
 import com.spacetravel.spring_15.service.NoteService;
@@ -14,14 +14,14 @@ public class NoteController {
     @Autowired
     private NoteService noteService;
 
-    // Метод для відображення списку нотаток
+
     @GetMapping("/list")
     public String listNotes(Model model) {
         model.addAttribute("notes", noteService.findAll());
         return "note/list";
     }
 
-    // Метод для відображення форми редагування нотатки
+
     @GetMapping("/edit")
     public String editNoteForm(@RequestParam("id") Long id, Model model) {
         Note note = noteService.findById(id);
@@ -29,7 +29,7 @@ public class NoteController {
         return "note/edit";
     }
 
-    // Метод для збереження змін нотатки
+
     @PostMapping("/edit")
     public String updateNote(@RequestParam Long id, @RequestParam String title, @RequestParam String content) {
         Note note = noteService.findById(id);
@@ -39,7 +39,7 @@ public class NoteController {
         return "redirect:/note/list";
     }
 
-    // Метод для видалення нотатки
+
     @PostMapping("/delete")
     public String deleteNote(@RequestParam Long id) {
         noteService.deleteById(id);

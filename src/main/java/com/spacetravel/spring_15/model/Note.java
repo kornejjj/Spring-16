@@ -1,20 +1,33 @@
 package com.spacetravel.spring_15.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "note")
 public class Note {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
+
     private String content;
 
-    // Гетери та сетери
+    
+    public Note() {
+    }
 
+    public Note(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    
     public Long getId() {
         return id;
     }
@@ -37,5 +50,15 @@ public class Note {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                '}';
     }
 }
